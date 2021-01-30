@@ -15,10 +15,12 @@ public class SquachScript : MonoBehaviour
     void Update()
     {
         float playerRot = player.rotation.z;
-        playerRot = Mathf.Clamp(playerRot, 0,180);
 
-        if (player.rotation.z > 180)
+
+        if (player.rotation.z >= 180)
         {
+            float playerRotDif = player.rotation.z - 180;
+            playerRot = player.rotation.z - playerRotDif;
             transform.localScale = new Vector3(transform.localScale.x *-1, transform.localScale.y, transform.localScale.z);
         }
         this.transform.rotation = Quaternion.Euler(player.rotation.x, player.rotation.y, playerRot);
