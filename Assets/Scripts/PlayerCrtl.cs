@@ -131,11 +131,9 @@ public class PlayerCrtl : MonoBehaviour
             bounceStrength = bounceStrength * 1.2f;
         } else if (legsInt > 2 && legsInt < 10)
         {
-            rotateLegs += 68;
             int i = 1;
-            
+            Quaternion legsRot = Quaternion.Euler(spawnedList[legsInt-2].transform.rotation.eulerAngles.x, spawnedList[legsInt - 2].transform.rotation.eulerAngles.y, spawnedList[legsInt - 2].transform.rotation.eulerAngles.z + 60);
             Vector2 legsPos = transform.position;
-            Quaternion legsRot = Quaternion.Euler(0, 0, rotateLegs);
             var clone = Instantiate(LegPref, legsPos, legsRot, gameObject.transform.GetChild(0));
             //Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
             clone.transform.localScale = new Vector3(clone.transform.localScale.x * i, clone.transform.localScale.y, clone.transform.localScale.z);
