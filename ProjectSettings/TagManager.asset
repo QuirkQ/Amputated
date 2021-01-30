@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Laser
+  - Slime
   layers:
   - Default
   - TransparentFX
