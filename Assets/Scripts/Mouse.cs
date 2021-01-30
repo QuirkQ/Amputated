@@ -19,21 +19,17 @@ public class Mouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, transform.position.y);
-
-        //transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        transform.position = player.transform.position;
         Vector2 mousePos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         Vector2 thisPos = new Vector2(transform.position.x, transform.position.y);
         transform.right = mousePos - thisPos;
         if (isSticked && transform.localScale.x <= maxScale)
         {
-            Debug.Log("Is Active " + transform.localScale.x);
+            //Debug.Log("Is Active " + transform.localScale.x);
             transform.localScale = new Vector3(transform.localScale.x + Time.deltaTime * speed, transform.localScale.y, transform.localScale.z);
         }
         else if (!isSticked && transform.localScale.x >= minScale)
         {
-            Debug.Log("Is Deactive " + transform.localScale.x);
+            //Debug.Log("Is Deactive " + transform.localScale.x);
             transform.localScale = new Vector3(transform.localScale.x - Time.deltaTime * speed, transform.localScale.y, transform.localScale.z);
         }
     }

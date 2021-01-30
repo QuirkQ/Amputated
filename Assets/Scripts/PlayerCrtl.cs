@@ -12,18 +12,15 @@ public class PlayerCrtl : MonoBehaviour
     public float bounceStrength;
     public LayerMask ground;
     public GameObject playerObj;
-    public Transform right;
-    public Transform left;
-    public Transform up;
-    public Transform down;
     public Animation animation;
+    public Animation legAnimation;
     public bool isBouncing;
+    public GameObject LegPref;
+    public CircleCollider2D circleCollider;
 
-    private float timer;
-    private int counter;
     private Vector2 bouncePos;
     private Vector2 bounceNormal;
-
+    private int legsInt;
     // Start is called before the first frame update
     void Start()
     {
@@ -146,6 +143,8 @@ public class PlayerCrtl : MonoBehaviour
         var angle = Mathf.Atan2(normal.y, normal.x) * Mathf.Rad2Deg;
         //Debug.Log("normal Angle: " + angle);
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        legAnimation.clip = legAnimation.GetClip("LegLandAni");
+        legAnimation.Play();
         animation.Play();
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         Invoke("ApplyForce", 0.1f);
@@ -167,7 +166,27 @@ public class PlayerCrtl : MonoBehaviour
         Vector2 bounceDir = new Vector2(Mathf.Cos(bounceAngle * Mathf.Deg2Rad), Mathf.Sin(bounceAngle * Mathf.Deg2Rad));
         Debug.DrawRay(bouncePos, bounceDir, Color.green, 1f);
         rb2d.AddForce(bounceDir * bounceStrength);
+        legAnimation.clip = legAnimation.GetClip("LegJumpAni");
+        legAnimation.Play();
         isBouncing = false;
         mouse.isSticked = false;
+    }
+
+    public void AddLeg()
+    {
+        legsInt += 1;
+        if (legsInt == 1)
+        {
+            Vector2 leg1Pos = transform.position;
+            var clone = Instantiate(LegPref, leg1Pos, Quaternion.Euler(0,0,0), this.transform);
+            circleCollider.radius = 1.12f;
+        } else if (legsInt == 2)
+        {
+            Vector2 leg2Pos = transform.position;
+            Quaternion leg2Rot = Quaternion.Euler(0, 0, -78.64f);
+            var clone = Instantiate(LegPref, leg2Pos, Quaternion.Euler(0, 0, 0), this.transform);
+            clone.transform.localScale = new Vector3(clone.transform.localScale.x * -1, clone.transform.localScale.y, clone.transform.localScale.z);
+        }
+
     }
 }
