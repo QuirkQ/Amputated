@@ -21,10 +21,10 @@ public class PlayerCrtl : MonoBehaviour
     private Vector2 bouncePos;
     private Vector2 bounceNormal;
     private int legsInt;
+    private float rotateLegs;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     /*
@@ -186,6 +186,15 @@ public class PlayerCrtl : MonoBehaviour
             Quaternion leg2Rot = Quaternion.Euler(0, 0, -78.64f);
             var clone = Instantiate(LegPref, leg2Pos, Quaternion.Euler(0, 0, 0), this.transform);
             clone.transform.localScale = new Vector3(clone.transform.localScale.x * -1, clone.transform.localScale.y, clone.transform.localScale.z);
+        } else if (legsInt > 2 && legsInt < 10)
+        {
+            rotateLegs += 60;
+            int i = Random.Range(-1,2);
+            Vector2 legsPos = transform.position;
+            Quaternion legsRot = Quaternion.Euler(0, 0, rotateLegs);
+            var clone = Instantiate(LegPref, legsPos, legsRot, this.transform);
+            Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
+            clone.transform.localScale = new Vector3(clone.transform.localScale.x * i, clone.transform.localScale.y, clone.transform.localScale.z);
         }
 
     }
