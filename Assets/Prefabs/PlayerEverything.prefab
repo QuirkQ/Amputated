@@ -53,7 +53,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6731131001166930962}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.30710006, y: -0.12701908, z: 4.429713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -436,7 +436,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6731131001994857214}
   - component: {fileID: 6731131001994857215}
-  - component: {fileID: 6731131001994857212}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -451,13 +450,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6731131001994857209}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6731131001575692501}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!212 &6731131001994857215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -509,19 +508,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6731131001994857212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6731131001994857209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 998ede8fdfbd39e4c9f4c8e965badd2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 6731131001575692501}
 --- !u!1 &6731131002069981774
 GameObject:
   m_ObjectHideFlags: 0
