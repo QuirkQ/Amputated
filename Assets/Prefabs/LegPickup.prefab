@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 69572ee14426a7847a4475c88faddaed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 296d8c858adaf9a49935fad8bea51269, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4d3958972c60f5547a9eb3c4c34b3276, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ecba0fcb63b373e4ebd19986351dd94d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 6828358889815833399}
   - component: {fileID: 7719815924423846697}
   - component: {fileID: 6127841823276678654}
+  - component: {fileID: 2550210101525666430}
   m_Layer: 7
   m_Name: LegPickup
   m_TagString: Untagged
@@ -192,7 +193,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5566535076165980589}
-  m_LocalRotation: {x: -0, y: -0, z: -0.6336509, w: 0.7736192}
+  m_LocalRotation: {x: 0, y: 0, z: -0.6336509, w: 0.7736192}
   m_LocalPosition: {x: -2.111, y: -2.591, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
@@ -255,6 +256,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1373308, y: 1.8993711}
   m_EdgeRadius: 0
+--- !u!114 &2550210101525666430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566535076165980589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109d9cc86a65a074081d68a658677f65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCtrl: {fileID: 0}
 --- !u!1 &8047739382527556282
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +340,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 077c96aca65a83b4f9e9b68788818bdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55346decf075b784eb0575126c4b4c9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -36,14 +36,14 @@ public class PlayerCrtl : MonoBehaviour
         
 
     }
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if (legsInt > 6)
         {
             var legs = gameObject.transform.GetChild(0);
             legs.transform.right = lookAtObject.position - transform.position;
         }
-    }
+    }*/
 
     public void BounceBall(Vector2 pos, Vector2 normal)
     {
@@ -114,29 +114,26 @@ public class PlayerCrtl : MonoBehaviour
         if (legsInt == 1)
         {
             Vector2 leg1Pos = transform.position;
-            var clone = Instantiate(LegPref, leg1Pos, Quaternion.Euler(0,0,0), gameObject.transform.GetChild(0));
-            circleCollider.radius = 1.12f;
+            Quaternion leg1Rot = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 100);
+            var clone = Instantiate(LegPref, leg1Pos, leg1Rot, gameObject.transform.GetChild(0));
+            circleCollider.radius = 1.08f;
             spawnedList.Add(clone);
             animationList.Add(clone.GetComponent<Animation>());
+            bounceStrength = bounceStrength * 1.5f;
         } else if (legsInt == 2)
         {
             Vector2 leg2Pos = transform.position;
-            var clone = Instantiate(LegPref, leg2Pos, Quaternion.Euler(0, 0, 0), gameObject.transform.GetChild(0));
+            Quaternion rotleg2 = Quaternion.Euler(spawnedList[0].transform.rotation.eulerAngles.x, spawnedList[0].transform.rotation.eulerAngles.y, spawnedList[0].transform.rotation.eulerAngles.z + 20);
+            var clone = Instantiate(LegPref, leg2Pos, rotleg2, gameObject.transform.GetChild(0));
             clone.transform.localScale = new Vector3(clone.transform.localScale.x * -1, clone.transform.localScale.y, clone.transform.localScale.z);
             spawnedList.Add(clone);
             animationList.Add(clone.GetComponent<Animation>());
+            bounceStrength = bounceStrength * 1.2f;
         } else if (legsInt > 2 && legsInt < 10)
         {
-            rotateLegs += 60;
-            int i = Random.Range(-1,2);
-            while (i == 0)
-            {
-                i = Random.Range(-1,2);
-            }
-            if (i == -1)
-            {
-                rotateLegs += 60;
-            }
+            rotateLegs += 68;
+            int i = 1;
+            
             Vector2 legsPos = transform.position;
             Quaternion legsRot = Quaternion.Euler(0, 0, rotateLegs);
             var clone = Instantiate(LegPref, legsPos, legsRot, gameObject.transform.GetChild(0));
@@ -144,6 +141,7 @@ public class PlayerCrtl : MonoBehaviour
             clone.transform.localScale = new Vector3(clone.transform.localScale.x * i, clone.transform.localScale.y, clone.transform.localScale.z);
             spawnedList.Add(clone);
             animationList.Add(clone.GetComponent<Animation>());
+            bounceStrength = bounceStrength * 1.1f;
         } else if (legsInt >= 10)
         {
             //Debug.Log("HIEERRR");
@@ -163,13 +161,13 @@ public class PlayerCrtl : MonoBehaviour
 
                     Transform randomChildChildChild = randomChildChild.transform.GetChild(0);
                     Transform randomChildChildChildChild = randomChildChildChild.transform.GetChild(0);
-                    Vector2 legsPos = randomChildChildChildChild.position;
+                    Vector3 legsPos = new Vector3(randomChildChildChildChild.position.x, randomChildChildChildChild.position.y, randomChildChildChildChild.position.z + 1);
                     Quaternion legsRot = Quaternion.Euler(randomChild.rotation.eulerAngles.x, randomChild.rotation.eulerAngles.y, randomChild.rotation.eulerAngles.z);
                     //Debug.Log(randomChild.rotation.eulerAngles.z);
                     //Debug.Log(spawnedList.IndexOf(randomChild.gameObject));
                     var clone = Instantiate(LegPref, legsPos, legsRot, randomChildChild);
                     //Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
-                    clone.transform.localScale = new Vector3(1 * i, 1, clone.transform.localScale.z);
+                    clone.transform.localScale = new Vector3(clone.transform.localScale.x * .5f * i, clone.transform.localScale.y * .5f, clone.transform.localScale.z * .5f); ;
                     //Debug.Log(randomChild + clone);
                     spawnedList.Add(clone);
                     animationList.Add(clone.GetComponent<Animation>());
