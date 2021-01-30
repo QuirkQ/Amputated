@@ -6,30 +6,26 @@ public class GroundCheck : MonoBehaviour
 {
     public PlayerCrtl playerCtrl;
 
-    private void OnTriggernEnter2D(Collider2D collision)
-    {
-        
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        ContactPoint2D[] contactPoints = new ContactPoint2D[1];
-        collision.GetContacts(contactPoints);
-        playerCtrl.BounceBall(contactPoints[0].point,contactPoints[0].normal);
+        if (!playerCtrl.isBouncing)
+        {
+            ContactPoint2D[] contactPoints = new ContactPoint2D[1];
+            collision.GetContacts(contactPoints);
+            playerCtrl.BounceBall(contactPoints[0].point, contactPoints[0].normal);
 
-        /*Vector3 closestPoint = collision.bounds.ClosestPoint(playerCtrl.rb2d.position);
-        if (playerCtrl.rb2d.position.x > closestPoint.x)
-        {
-            playerCtrl.inverted = true;
+            /*Vector3 closestPoint = collision.bounds.ClosestPoint(playerCtrl.rb2d.position);
+            if (playerCtrl.rb2d.position.x > closestPoint.x)
+            {
+                playerCtrl.inverted = true;
+            }
+            else if (playerCtrl.rb2d.position.y > closestPoint.y)
+            {
+                playerCtrl.inverted = true;
+            }*/
+            playerCtrl.grounded = true;
         }
-        else if (playerCtrl.rb2d.position.y > closestPoint.y)
-        {
-            playerCtrl.inverted = true;
-        }*/
-        playerCtrl.grounded = true;
+        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
