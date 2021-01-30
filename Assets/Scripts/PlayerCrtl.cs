@@ -21,6 +21,7 @@ public class PlayerCrtl : MonoBehaviour
     public CircleCollider2D circleCollider;
     public Transform lookAtObject;
 
+    private float secondsBetweenBounce;
     private Vector2 bouncePos;
     private Vector2 bounceNormal;
     private int legsInt;
@@ -28,6 +29,7 @@ public class PlayerCrtl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        secondsBetweenBounce = .2f;
     }
 
     void Update()
@@ -58,7 +60,7 @@ public class PlayerCrtl : MonoBehaviour
         //PlayAllAnimations("LegLandAni");
         animation.Play();
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-        Invoke("ApplyForce", 0.1f);
+        Invoke("ApplyForce", secondsBetweenBounce);
         
     }
     void ApplyForce()
@@ -120,6 +122,7 @@ public class PlayerCrtl : MonoBehaviour
             spawnedList.Add(clone);
             animationList.Add(clone.GetComponent<Animation>());
             bounceStrength = bounceStrength * 1.5f;
+            secondsBetweenBounce = 0.1f;
         } else if (legsInt == 2)
         {
             Vector2 leg2Pos = transform.position;
