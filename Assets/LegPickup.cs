@@ -9,7 +9,7 @@ public class LegPickup : MonoBehaviour
     {
         if (collision.gameObject.layer == 6)
         {
-            Debug.Log("HIIIIII");
+            //Debug.Log("HIIIIII");
             playerCtrl.AddLeg();
             gameObject.SetActive(false);
         }
