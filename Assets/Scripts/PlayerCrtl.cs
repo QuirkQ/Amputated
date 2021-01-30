@@ -33,7 +33,7 @@ public class PlayerCrtl : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(dead);
+        this.CheckIfDead();
     }
 
     public void BounceBall(Vector2 pos, Vector2 normal)
@@ -69,5 +69,13 @@ public class PlayerCrtl : MonoBehaviour
         rb2d.AddForce(bounceDir * bounceStrength);
         isBouncing = false;
         mouse.isSticked = false;
+    }
+
+    void CheckIfDead()
+    {
+        if (dead)
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 }
