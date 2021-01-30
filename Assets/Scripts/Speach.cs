@@ -17,10 +17,22 @@ public class Speach : MonoBehaviour
 
     IEnumerator Type()
     {
-        foreach (char letter in sentences[index].ToCharArray())
+        for (int i = 0; i < sentences.Length; i++)
         {
-            textDisplay.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            textDisplay.text = "";
+            char[] letters = sentences[i].ToCharArray();
+            for (int c = 0; c < letters.Length; c++)
+            {
+                textDisplay.text += letters[c];
+                if (c == letters.Length - 1)
+                {
+                    yield return new WaitForSeconds(typingSpeed + 1.5f);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(typingSpeed);
+                }
+            }
         }
     }
 }
