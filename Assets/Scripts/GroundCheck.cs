@@ -8,14 +8,14 @@ public class GroundCheck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        string collidedBodyTag = collision.gameObject.tag;
-        if (!playerCtrl.isBouncing && collidedBodyTag == "Ground")
+        int collidedBodyTag = collision.gameObject.layer;
+        if (!playerCtrl.isBouncing && collidedBodyTag == 7)
         {
             ContactPoint2D[] contactPoints = new ContactPoint2D[1];
             collision.GetContacts(contactPoints);
             playerCtrl.BounceBall(contactPoints[0].point, contactPoints[0].normal);
             playerCtrl.grounded = true;
-        } else if (collidedBodyTag == "Laser")
+        } else if (collidedBodyTag == 8)
         {
             playerCtrl.dead = true;
         }
