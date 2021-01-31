@@ -9,6 +9,7 @@ public class Speach : MonoBehaviour
     public string[] sentences;
     public int index;
     public float typingSpeed;
+    public GameObject obj;
 
     void Start()
     {
@@ -34,5 +35,8 @@ public class Speach : MonoBehaviour
                 }
             }
         }
+  
+        textDisplay.text = "";
+        Destroy(obj);
     }
 }
