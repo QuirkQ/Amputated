@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCrtl : MonoBehaviour
 {
     public bool dead;
+    public CameraShake cameraShake;
     public Mouse mouse;
     public List<GameObject> spawnedList = new List<GameObject>();
     public List<Animation> animationList = new List<Animation>();
@@ -49,6 +50,11 @@ public class PlayerCrtl : MonoBehaviour
 
     public void BounceBall(Vector2 pos, Vector2 normal)
     {
+        if (legsInt > 0)
+        {
+            cameraShake.Shake();
+        }
+
         mouse.isSticked = true;
         isBouncing = true;
         Debug.DrawRay(pos, normal, Color.red, 1f);
@@ -109,6 +115,15 @@ public class PlayerCrtl : MonoBehaviour
             Application.LoadLevel(Application.loadedLevel);
         }
 	}
+
+    void IncreaseCameraShake()
+    {
+        if (cameraShake.Amount.x <= 1.2f)
+        {
+            cameraShake.Amount = cameraShake.Amount * 1.3f;
+        }
+
+    }
 	
     public void AddLeg()
     {
@@ -123,6 +138,7 @@ public class PlayerCrtl : MonoBehaviour
             animationList.Add(clone.GetComponent<Animation>());
             bounceStrength = bounceStrength * 1.5f;
             secondsBetweenBounce = 0.1f;
+            IncreaseCameraShake();
         } else if (legsInt == 2)
         {
             Vector2 leg2Pos = transform.position;
@@ -132,6 +148,7 @@ public class PlayerCrtl : MonoBehaviour
             spawnedList.Add(clone);
             animationList.Add(clone.GetComponent<Animation>());
             bounceStrength = bounceStrength * 1.2f;
+            IncreaseCameraShake();
         } else if (legsInt > 2 && legsInt < 10)
         {
             int i = 1;
@@ -143,6 +160,7 @@ public class PlayerCrtl : MonoBehaviour
             spawnedList.Add(clone);
             animationList.Add(clone.GetComponent<Animation>());
             bounceStrength = bounceStrength * 1.1f;
+            IncreaseCameraShake();
         } else if (legsInt >= 10)
         {
             //Debug.Log("HIEERRR");
@@ -173,6 +191,7 @@ public class PlayerCrtl : MonoBehaviour
                     spawnedList.Add(clone);
                     animationList.Add(clone.GetComponent<Animation>());
                     t = 1;
+                    IncreaseCameraShake();
                 }
             }
             
