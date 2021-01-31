@@ -15,18 +15,26 @@ public class PauseMenu : MonoBehaviour
         {
             if (menuEnabled)
             {
-                mouse.enabled = true;
-                Time.timeScale = 1;
-                pauseCanvas.gameObject.SetActive(false);
-                menuEnabled = false;
+                DisableMenu();
             } else
             {
-                mouse.enabled = false;
-                Time.timeScale = 0;
-                pauseCanvas.gameObject.SetActive(true);
-                menuEnabled = true;
+                EnableMenu();
             }
 
         }
+    }
+    public void EnableMenu()
+    {
+        mouse.enabled = false;
+        Time.timeScale = 0;
+        pauseCanvas.gameObject.SetActive(true);
+        menuEnabled = true;
+    }
+    public void DisableMenu()
+    {
+        mouse.enabled = true;
+        Time.timeScale = 1;
+        pauseCanvas.gameObject.SetActive(false);
+        menuEnabled = false;
     }
 }
