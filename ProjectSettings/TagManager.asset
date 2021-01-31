@@ -19,7 +19,7 @@ TagManager:
   - Laser
   - Slime
   - Background
-  - 
+  - Scientist
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: PlayerSort
+    uniqueID: 3421458117
     locked: 0
