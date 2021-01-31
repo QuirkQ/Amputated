@@ -28,8 +28,7 @@ public class ScientistPatrol : MonoBehaviour
             Debug.DrawRay(transform.position, Vector2.right, Color.green);
             if (hit.collider != null)
             {
-
-                newPos();
+                midPos();
                 Turn();
             }
             transform.position = Vector2.MoveTowards(transform.position, newPosV2, Time.deltaTime * speed);

@@ -124,6 +124,14 @@ public class PlayerCrtl : MonoBehaviour
         }
 
     }
+    public void AddAllLegs()
+    {
+        for (int i = 0; i <= legsInt; i++)
+        {
+            AddLeg();
+        }
+    }
+
 	
     public void AddLeg()
     {
