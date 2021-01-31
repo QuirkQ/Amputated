@@ -8,6 +8,7 @@ public class ScientistPatrol : MonoBehaviour
     public float distance;
     public LayerMask ground;
     public Transform midPoint;
+    public AudioSource audioSource;
 
     private float x;
     private float y;
@@ -43,7 +44,7 @@ public class ScientistPatrol : MonoBehaviour
 
     void newPos()
     {
-        x = Random.Range(-10f, 10f) + transform.position.x;
+        x = Random.Range(-4f, 4f) + transform.position.x;
         y = transform.position.y;
         newPosV2 = new Vector2(x, y);
     }
@@ -73,6 +74,7 @@ public class ScientistPatrol : MonoBehaviour
             em.enabled = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            audioSource.Play();
         }
     }
 }
