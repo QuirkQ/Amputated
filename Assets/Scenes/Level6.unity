@@ -96612,5 +96612,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c2b9b17eeec7534f8625e62bf9b50d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: MainMenu
+  nextLevel: CreditsMenu
   playerCtrl: {fileID: 0}
