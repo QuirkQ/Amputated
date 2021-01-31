@@ -8,6 +8,7 @@ public class LaserBlink : MonoBehaviour
     public GameObject laser;
     public GameObject laserOn;
     public GameObject laserGoingOn;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class LaserBlink : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
         Invoke("On", onOffTimer);
         Invoke("GoingOn", onOffTimer - .6f);
+        audioSource.Stop();
     }
 
     void GoingOn()
@@ -34,6 +36,7 @@ public class LaserBlink : MonoBehaviour
         laserOn.gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().enabled = false;
         laserGoingOn.gameObject.SetActive(true);
+        audioSource.Play();
     }
 
     void On()
@@ -43,5 +46,6 @@ public class LaserBlink : MonoBehaviour
         laserGoingOn.gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().enabled = false;
         Invoke("Off", onOffTimer);
+        
     }
 }

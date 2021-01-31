@@ -21,6 +21,14 @@ public class PlayerCrtl : MonoBehaviour
     public GameObject LegPref;
     public CircleCollider2D circleCollider;
     public Transform lookAtObject;
+    
+    public AudioSource audioSource;
+    public AudioSource audioSource2;
+    public AudioClip slimeBounce1;
+    public AudioClip slimeBounce2;
+    public AudioClip bigSlimeBounce1;
+    public AudioClip bigSlimeBounce2;
+    public AudioClip deathSound;
 
     private float secondsBetweenBounce;
     private Vector2 bouncePos;
@@ -68,6 +76,23 @@ public class PlayerCrtl : MonoBehaviour
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         Invoke("ApplyForce", secondsBetweenBounce);
         
+            int i = Random.Range(0, 2);
+            if (i == 0)
+            {
+                audioSource.clip = bigSlimeBounce1;
+                audioSource.Play();
+                audioSource2.clip = slimeBounce1;
+                audioSource2.Play();
+            }
+            else
+            {
+                audioSource.clip = bigSlimeBounce2;
+                audioSource.Play();
+                audioSource2.clip = slimeBounce1;
+                audioSource2.Play();
+            }
+        
+
     }
     void ApplyForce()
     {
@@ -112,7 +137,10 @@ public class PlayerCrtl : MonoBehaviour
     {
         if (dead)
         {
+            audioSource2.clip = deathSound;
+            audioSource2.Play();
             Application.LoadLevel(Application.loadedLevel);
+            
         }
 	}
 
@@ -136,6 +164,7 @@ public class PlayerCrtl : MonoBehaviour
     public void AddLeg()
     {
         legsInt += 1;
+        audioSource.volume += .015f;
         if (legsInt == 1)
         {
             Vector2 leg1Pos = transform.position;
