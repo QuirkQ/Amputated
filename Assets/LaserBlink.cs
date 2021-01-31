@@ -5,6 +5,9 @@ using UnityEngine;
 public class LaserBlink : MonoBehaviour
 {
     public float onOffTimer;
+    public GameObject laser;
+    public GameObject laserOn;
+    public GameObject laserGoingOn;
 
     // Start is called before the first frame update
     void Start()
@@ -12,27 +15,32 @@ public class LaserBlink : MonoBehaviour
         Off();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void Off()
     {
-        var laser = gameObject.transform.GetChild(0);
+        
         laser.gameObject.SetActive(false);
-        var laserOn = gameObject.transform.GetChild(1);
+
         laserOn.gameObject.SetActive(false);
+
+        laserGoingOn.gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().enabled = true;
         Invoke("On", onOffTimer);
+        Invoke("GoingOn", onOffTimer - .6f);
     }
+
+    void GoingOn()
+    {
+        laser.gameObject.SetActive(false);
+        laserOn.gameObject.SetActive(false);
+        GetComponent<SpriteRenderer>().enabled = false;
+        laserGoingOn.gameObject.SetActive(true);
+    }
+
     void On()
     {
-        var laser = gameObject.transform.GetChild(0);
         laser.gameObject.SetActive(true);
-        var laserOn = gameObject.transform.GetChild(1);
         laserOn.gameObject.SetActive(true);
+        laserGoingOn.gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().enabled = false;
         Invoke("Off", onOffTimer);
     }

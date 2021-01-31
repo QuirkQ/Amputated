@@ -1358,6 +1358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevel: Level2Final
+  playerCtrl: {fileID: 0}
 --- !u!1001 &1502225616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88782,6 +88783,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6240652668219287712, guid: bb553dfbb71d88e40b5f2ba0d7df5269, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -11.575104
+      objectReference: {fileID: 0}
     - target: {fileID: 6240652669293562760, guid: bb553dfbb71d88e40b5f2ba0d7df5269, type: 3}
       propertyPath: m_Name
       value: Dialogue
