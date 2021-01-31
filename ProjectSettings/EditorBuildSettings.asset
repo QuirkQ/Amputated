@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2Final.unity
     guid: 5fd32c8adf6da5e48920c41c8ea0191d
+  - enabled: 1
+    path: Assets/Scenes/Level5Berend.unity
+    guid: 839ae7671acdaa74d9743123510c9a52
   m_configObjects: {}
