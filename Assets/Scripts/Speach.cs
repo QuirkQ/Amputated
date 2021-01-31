@@ -10,10 +10,12 @@ public class Speach : MonoBehaviour
     public int index;
     public float typingSpeed;
     public GameObject obj;
+    public GameObject obj2;
 
     void Start()
     {
         StartCoroutine(Type());
+        obj2 = GameObject.Find("TextBackground");
     }
 
     IEnumerator Type()
@@ -38,5 +40,6 @@ public class Speach : MonoBehaviour
   
         textDisplay.text = "";
         Destroy(obj);
+        Destroy(obj2);
     }
 }
