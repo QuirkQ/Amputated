@@ -272,10 +272,10 @@ RectTransform:
   m_Father: {fileID: 7669765156048618389}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0050000004, y: 0}
-  m_AnchorMax: {x: 1, y: 0.29387975}
-  m_AnchoredPosition: {x: -2.5, y: -20}
-  m_SizeDelta: {x: -1079, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.6, y: 0.3}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &834322718
 MonoBehaviour:
@@ -87103,10 +87103,10 @@ RectTransform:
   m_Father: {fileID: 7669765156048618389}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.367, y: 0.037}
-  m_AnchorMax: {x: 0.675377, y: 0.18724056}
-  m_AnchoredPosition: {x: -3.5, y: 31}
-  m_SizeDelta: {x: -10, y: 26}
+  m_AnchorMin: {x: 0.35, y: 0.15}
+  m_AnchorMax: {x: 0.7, y: 0.3}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7669765154230585117
 GameObject:
@@ -87256,10 +87256,10 @@ RectTransform:
   m_Father: {fileID: 7669765156048618389}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.22953273, y: 0.056398634}
-  m_AnchorMax: {x: 0.3442982, y: 0.2398246}
-  m_AnchoredPosition: {x: -0.79992676, y: -2.4848938}
-  m_SizeDelta: {x: -29, y: 3.5608997}
+  m_AnchorMin: {x: 0.18, y: 0.08}
+  m_AnchorMax: {x: 0.31, y: 0.3}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7669765154828527506
 GameObject:
@@ -87466,17 +87466,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 7669765154230585187}
   sentences:
-  - "Hi there \u201CTentacle Boy\u201D! You have been chosen to be our Test subject
-    here at our lab! "
-  - The test will consist of you completing some puzzles that we have set up.
+  - 'Hi there Ted! You have been chosen to be the Test subject in our lab! '
+  - The test will consist of you completing puzzles that we have set up.
   - "We promise you\u2019ll have a lot of fun completing them!"
-  - "Oh, and also, Tentacle Boy\u2026"
+  - "Oh, and also, Ted\u2026"
   - We have cut off all your limbs and scattered them around in the lab!
-  - You will have to find them and reattach them to your body in order to complete
-    the puzzles!
-  - Best of luck Tentacle Boy!
+  - You will have to find your limbs and reattach them to your body!
+  - Best of luck Ted  finishing all the puzzles!
   index: 0
-  typingSpeed: 0.1
+  typingSpeed: 0.15
   obj: {fileID: 7669765154828527506}
 --- !u!4 &7669765156152881617
 Transform:
