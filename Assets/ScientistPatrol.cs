@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScientistPatrol : MonoBehaviour
 {
+    public PlayerCrtl playerCrtl;
     public float speed;
     public float distance;
     public LayerMask ground;
@@ -75,6 +76,7 @@ public class ScientistPatrol : MonoBehaviour
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             audioSource.Play();
+            playerCrtl.AddLeg();
         }
     }
 }

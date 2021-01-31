@@ -45,7 +45,7 @@ public class LaserBlink : MonoBehaviour
         laserOn.gameObject.SetActive(true);
         laserGoingOn.gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().enabled = false;
-        Invoke("Off", onOffTimer);
+        Invoke("Off", onOffTimer/2);
         
     }
 }

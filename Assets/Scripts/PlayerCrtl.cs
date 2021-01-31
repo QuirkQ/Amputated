@@ -165,74 +165,78 @@ public class PlayerCrtl : MonoBehaviour
     {
         legsInt += 1;
         audioSource.volume += .015f;
-        if (legsInt == 1)
-        {
-            Vector2 leg1Pos = transform.position;
-            Quaternion leg1Rot = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 100);
-            var clone = Instantiate(LegPref, leg1Pos, leg1Rot, gameObject.transform.GetChild(0));
-            circleCollider.radius = 1.08f;
-            spawnedList.Add(clone);
-            animationList.Add(clone.GetComponent<Animation>());
-            bounceStrength = bounceStrength * 1.5f;
-            secondsBetweenBounce = 0.1f;
-            IncreaseCameraShake();
-        } else if (legsInt == 2)
-        {
-            Vector2 leg2Pos = transform.position;
-            Quaternion rotleg2 = Quaternion.Euler(spawnedList[0].transform.rotation.eulerAngles.x, spawnedList[0].transform.rotation.eulerAngles.y, spawnedList[0].transform.rotation.eulerAngles.z + 20);
-            var clone = Instantiate(LegPref, leg2Pos, rotleg2, gameObject.transform.GetChild(0));
-            clone.transform.localScale = new Vector3(clone.transform.localScale.x * -1, clone.transform.localScale.y, clone.transform.localScale.z);
-            spawnedList.Add(clone);
-            animationList.Add(clone.GetComponent<Animation>());
-            bounceStrength = bounceStrength * 1.2f;
-            IncreaseCameraShake();
-        } else if (legsInt > 2 && legsInt < 10)
-        {
-            int i = 1;
-            Quaternion legsRot = Quaternion.Euler(spawnedList[legsInt-2].transform.rotation.eulerAngles.x, spawnedList[legsInt - 2].transform.rotation.eulerAngles.y, spawnedList[legsInt - 2].transform.rotation.eulerAngles.z + 60);
-            Vector2 legsPos = transform.position;
-            var clone = Instantiate(LegPref, legsPos, legsRot, gameObject.transform.GetChild(0));
-            //Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
-            clone.transform.localScale = new Vector3(clone.transform.localScale.x * i, clone.transform.localScale.y, clone.transform.localScale.z);
-            spawnedList.Add(clone);
-            animationList.Add(clone.GetComponent<Animation>());
-            bounceStrength = bounceStrength * 1.1f;
-            IncreaseCameraShake();
-        } else if (legsInt >= 10)
-        {
-            //Debug.Log("HIEERRR");
-            int i = Random.Range(-1, 2);
-            while (i == 0)
-            {
-                i = Random.Range(-1, 2);
-            }
-            int t = 0;
-            while (t == 0)
-            {
-                int childnumber = Random.Range(1, gameObject.transform.GetChild(0).childCount);
-                Transform randomChild = gameObject.transform.GetChild(0).GetChild(childnumber);
-                Transform randomChildChild = randomChild.transform.GetChild(0);
-                if (randomChildChild.childCount < 2)
-                {
 
-                    Transform randomChildChildChild = randomChildChild.transform.GetChild(0);
-                    Transform randomChildChildChildChild = randomChildChildChild.transform.GetChild(0);
-                    Vector3 legsPos = new Vector3(randomChildChildChildChild.position.x, randomChildChildChildChild.position.y, randomChildChildChildChild.position.z + 1);
-                    Quaternion legsRot = Quaternion.Euler(randomChild.rotation.eulerAngles.x, randomChild.rotation.eulerAngles.y, randomChild.rotation.eulerAngles.z);
-                    //Debug.Log(randomChild.rotation.eulerAngles.z);
-                    //Debug.Log(spawnedList.IndexOf(randomChild.gameObject));
-                    var clone = Instantiate(LegPref, legsPos, legsRot, randomChildChild);
-                    //Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
-                    clone.transform.localScale = new Vector3(clone.transform.localScale.x * .5f * i, clone.transform.localScale.y * .5f, clone.transform.localScale.z * .5f); ;
-                    //Debug.Log(randomChild + clone);
-                    spawnedList.Add(clone);
-                    animationList.Add(clone.GetComponent<Animation>());
-                    t = 1;
-                    IncreaseCameraShake();
-                }
+        if (legsInt <= 16)
+        {
+            Debug.Log("Leg Added " + legsInt);
+            if (legsInt == 1)
+            {
+                Vector2 leg1Pos = transform.position;
+                Quaternion leg1Rot = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 100);
+                var clone = Instantiate(LegPref, leg1Pos, leg1Rot, gameObject.transform.GetChild(0));
+                circleCollider.radius = 1.08f;
+                spawnedList.Add(clone);
+                animationList.Add(clone.GetComponent<Animation>());
+                bounceStrength = bounceStrength * 1.5f;
+                secondsBetweenBounce = 0.1f;
+                IncreaseCameraShake();
             }
-            
-           
+            else if (legsInt == 2)
+            {
+                Vector2 leg2Pos = transform.position;
+                Quaternion rotleg2 = Quaternion.Euler(spawnedList[0].transform.rotation.eulerAngles.x, spawnedList[0].transform.rotation.eulerAngles.y, spawnedList[0].transform.rotation.eulerAngles.z + 20);
+                var clone = Instantiate(LegPref, leg2Pos, rotleg2, gameObject.transform.GetChild(0));
+                clone.transform.localScale = new Vector3(clone.transform.localScale.x * -1, clone.transform.localScale.y, clone.transform.localScale.z);
+                spawnedList.Add(clone);
+                animationList.Add(clone.GetComponent<Animation>());
+                bounceStrength = bounceStrength * 1.2f;
+                IncreaseCameraShake();
+            }
+            else if (legsInt > 2 && legsInt < 10)
+            {
+                int i = 1;
+                Quaternion legsRot = Quaternion.Euler(spawnedList[legsInt - 2].transform.rotation.eulerAngles.x, spawnedList[legsInt - 2].transform.rotation.eulerAngles.y, spawnedList[legsInt - 2].transform.rotation.eulerAngles.z + 60);
+                Vector2 legsPos = transform.position;
+                var clone = Instantiate(LegPref, legsPos, legsRot, gameObject.transform.GetChild(0));
+                //Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
+                clone.transform.localScale = new Vector3(clone.transform.localScale.x * i, clone.transform.localScale.y, clone.transform.localScale.z);
+                spawnedList.Add(clone);
+                animationList.Add(clone.GetComponent<Animation>());
+                bounceStrength = bounceStrength * 1.1f;
+                IncreaseCameraShake();
+            }
+            else if (legsInt >= 10)
+            {
+                
+                int t = 0;
+                while (t == 0)
+                {
+                    int childnumber = Random.Range(1, gameObject.transform.GetChild(0).childCount);
+                    Transform randomChild = gameObject.transform.GetChild(0).GetChild(childnumber);
+                    Transform randomChildChild = randomChild.transform.GetChild(0);
+                    if (randomChildChild.childCount < 2)
+                    {
+
+                        Transform randomChildChildChild = randomChildChild.transform.GetChild(0);
+                        Transform randomChildChildChildChild = randomChildChildChild.transform.GetChild(0);
+                        Vector3 legsPos = new Vector3(randomChildChildChildChild.position.x, randomChildChildChildChild.position.y, randomChildChildChildChild.position.z + 1);
+                        Quaternion legsRot = Quaternion.Euler(randomChild.rotation.eulerAngles.x, randomChild.rotation.eulerAngles.y, randomChild.rotation.eulerAngles.z);
+                        //Debug.Log(randomChild.rotation.eulerAngles.z);
+                        //Debug.Log(spawnedList.IndexOf(randomChild.gameObject));
+                        var clone = Instantiate(LegPref, legsPos, legsRot, randomChildChild);
+                        //Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
+                        clone.transform.localScale = new Vector3(clone.transform.localScale.x * .5f, clone.transform.localScale.y * .5f, clone.transform.localScale.z * .5f); ;
+                        //Debug.Log(randomChild + clone);
+                        spawnedList.Add(clone);
+                        animationList.Add(clone.GetComponent<Animation>());
+                        t = 1;
+                        IncreaseCameraShake();
+                    }
+                }
+
+
+            }
         }
+        
     }
 }
