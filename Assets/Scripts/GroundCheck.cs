@@ -21,11 +21,7 @@ public class GroundCheck : MonoBehaviour
             contactPoint = contactPoints[0].point;
             contactNormal = contactPoints[0].normal;
             isStillColliding = true;
-        } else if (collidedBodyTag == 8)
-        {
-            playerCtrl.dead = true;
         }
-        
     }
 
     private void OnCollisionExit2D(Collision2D collision)

@@ -4523,6 +4523,10 @@ PrefabInstance:
       propertyPath: midPoint
       value: 
       objectReference: {fileID: 1545954150}
+    - target: {fileID: 954087973138409512, guid: f43828a0f93cac94695491dd1ca1adb4, type: 3}
+      propertyPath: playerCrtl
+      value: 
+      objectReference: {fileID: 459143920}
     - target: {fileID: 954087973138409513, guid: f43828a0f93cac94695491dd1ca1adb4, type: 3}
       propertyPath: m_Name
       value: ScreamingScientist

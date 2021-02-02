@@ -45,7 +45,7 @@ public class PlayerCrtl : MonoBehaviour
 
     void Update()
     {
-        this.CheckIfDead();
+
 
         if (groundCheck.isStillColliding && !isBouncing)
         {
@@ -155,15 +155,13 @@ public class PlayerCrtl : MonoBehaviour
 
     }
 
-    void CheckIfDead()
+    public void Kill()
     {
-        if (dead)
-        {
+        
             audioSource2.clip = deathSound;
             audioSource2.Play();
             Application.LoadLevel(Application.loadedLevel);
             
-        }
 	}
 
     void IncreaseCameraShake()
