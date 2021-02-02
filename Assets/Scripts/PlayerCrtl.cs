@@ -7,6 +7,7 @@ public class PlayerCrtl : MonoBehaviour
     public bool dead;
     public CameraShake cameraShake;
     public Mouse mouse;
+    public GroundCheck groundCheck;
     public List<GameObject> spawnedList = new List<GameObject>();
     public List<Animation> animationList = new List<Animation>();
     public bool grounded;
@@ -35,6 +36,7 @@ public class PlayerCrtl : MonoBehaviour
     private Vector2 bounceNormal;
     private int legsInt;
     private float rotateLegs;
+    private float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +45,21 @@ public class PlayerCrtl : MonoBehaviour
 
     void Update()
     {
-        this.CheckIfDead();
-        
 
+
+        if (groundCheck.isStillColliding && !isBouncing)
+        {
+            timer += Time.deltaTime;
+            if (timer >= .5f)
+            {
+                CheckGroundAgain();
+                timer = 0;
+            }
+        }
+        else if (timer > 0)
+        {
+            timer = 0;
+        }
     }
     /*private void FixedUpdate()
     {
@@ -109,10 +123,18 @@ public class PlayerCrtl : MonoBehaviour
         var bounceAngle = angle + angleDif;
         Vector2 bounceDir = new Vector2(Mathf.Cos(bounceAngle * Mathf.Deg2Rad), Mathf.Sin(bounceAngle * Mathf.Deg2Rad));
         Debug.DrawRay(bouncePos, bounceDir, Color.green, 1f); // debug
+        //Debug.Log(bounceDir * bounceStrength);
         rb2d.AddForce(bounceDir * bounceStrength);
         //PlayAllAnimations("LegJumpAni");
         isBouncing = false;
         mouse.isSticked = false;
+    }
+    void CheckGroundAgain()
+    {
+        if (groundCheck.isStillColliding)
+        {
+            groundCheck.CollideAgain();
+        }
     }
     void PlayAllAnimations(string animationName)
     {
@@ -133,15 +155,13 @@ public class PlayerCrtl : MonoBehaviour
 
     }
 
-    void CheckIfDead()
+    public void Kill()
     {
-        if (dead)
-        {
+        
             audioSource2.clip = deathSound;
             audioSource2.Play();
             Application.LoadLevel(Application.loadedLevel);
             
-        }
 	}
 
     void IncreaseCameraShake()
@@ -166,7 +186,7 @@ public class PlayerCrtl : MonoBehaviour
         legsInt += 1;
         audioSource.volume += .015f;
 
-        if (legsInt <= 16)
+        if (legsInt <= 17)
         {
             Debug.Log("Leg Added " + legsInt);
             if (legsInt == 1)
@@ -207,14 +227,13 @@ public class PlayerCrtl : MonoBehaviour
             }
             else if (legsInt >= 10)
             {
-                
                 int t = 0;
                 while (t == 0)
                 {
                     int childnumber = Random.Range(1, gameObject.transform.GetChild(0).childCount);
                     Transform randomChild = gameObject.transform.GetChild(0).GetChild(childnumber);
                     Transform randomChildChild = randomChild.transform.GetChild(0);
-                    if (randomChildChild.childCount < 2)
+                    if (randomChild.childCount < 2)
                     {
 
                         Transform randomChildChildChild = randomChildChild.transform.GetChild(0);
@@ -223,9 +242,9 @@ public class PlayerCrtl : MonoBehaviour
                         Quaternion legsRot = Quaternion.Euler(randomChild.rotation.eulerAngles.x, randomChild.rotation.eulerAngles.y, randomChild.rotation.eulerAngles.z);
                         //Debug.Log(randomChild.rotation.eulerAngles.z);
                         //Debug.Log(spawnedList.IndexOf(randomChild.gameObject));
-                        var clone = Instantiate(LegPref, legsPos, legsRot, randomChildChild);
+                        var clone = Instantiate(LegPref, legsPos, legsRot, randomChild);
                         //Debug.Log("Legs rotate: " + rotateLegs + " New Leg Rotation: " + legsRot);
-                        clone.transform.localScale = new Vector3(clone.transform.localScale.x * .5f, clone.transform.localScale.y * .5f, clone.transform.localScale.z * .5f); ;
+                        clone.transform.localScale = new Vector3(clone.transform.localScale.x * .7f, clone.transform.localScale.y * .7f, clone.transform.localScale.z * .7f); ;
                         //Debug.Log(randomChild + clone);
                         spawnedList.Add(clone);
                         animationList.Add(clone.GetComponent<Animation>());

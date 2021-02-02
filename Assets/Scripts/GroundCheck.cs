@@ -5,7 +5,10 @@ using UnityEngine;
 public class GroundCheck : MonoBehaviour
 {
     public PlayerCrtl playerCtrl;
+    public bool isStillColliding;
 
+    private Vector2 contactPoint;
+    private Vector2 contactNormal;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         int collidedBodyTag = collision.gameObject.layer;
@@ -15,15 +18,21 @@ public class GroundCheck : MonoBehaviour
             collision.GetContacts(contactPoints);
             playerCtrl.BounceBall(contactPoints[0].point, contactPoints[0].normal);
             playerCtrl.grounded = true;
-        } else if (collidedBodyTag == 8)
-        {
-            playerCtrl.dead = true;
+            contactPoint = contactPoints[0].point;
+            contactNormal = contactPoints[0].normal;
+            isStillColliding = true;
         }
-        
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         playerCtrl.grounded = false;
         playerCtrl.inverted = false;
+        isStillColliding = false;
+    }
+    public void CollideAgain()
+    {
+        //Debug.Log("Pls Don't");
+        playerCtrl.BounceBall(contactPoint, contactNormal);
     }
 }
