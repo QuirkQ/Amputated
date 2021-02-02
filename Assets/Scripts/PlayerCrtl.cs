@@ -22,6 +22,7 @@ public class PlayerCrtl : MonoBehaviour
     public GameObject LegPref;
     public CircleCollider2D circleCollider;
     public Transform lookAtObject;
+    public GameObject ImpactParticles;
     
     public AudioSource audioSource;
     public AudioSource audioSource2;
@@ -37,6 +38,7 @@ public class PlayerCrtl : MonoBehaviour
     private int legsInt;
     private float rotateLegs;
     private float timer;
+    private int randomint;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +47,11 @@ public class PlayerCrtl : MonoBehaviour
 
     void Update()
     {
-
+        if (!grounded)
+        {
+            
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + Time.deltaTime * 100 * randomint);
+        }
 
         if (groundCheck.isStillColliding && !isBouncing)
         {
@@ -90,6 +96,8 @@ public class PlayerCrtl : MonoBehaviour
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         Invoke("ApplyForce", secondsBetweenBounce);
         
+        ImpactParticles.transform.position = bouncePos;
+        ImpactParticles.GetComponent<ParticleSystem>().Play();
             int i = Random.Range(0, 2);
             if (i == 0)
             {
@@ -128,6 +136,8 @@ public class PlayerCrtl : MonoBehaviour
         //PlayAllAnimations("LegJumpAni");
         isBouncing = false;
         mouse.isSticked = false;
+        randomint = Random.Range(0,2);
+        if (randomint == 0) randomint = -1;
     }
     void CheckGroundAgain()
     {
